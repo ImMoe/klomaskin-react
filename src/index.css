@@ -1,13 +1,204 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  height: 100vh;
+  background-color: #000;
+  overflow: hidden;
+}
+
+.scene {
+  width: 800px;
+  height: 100vh;
+  background: url(../public/assets/Yellow_Backdrop.png);
+  background-position: 50% 90%;
+  background-repeat: no-repeat;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.claw-base {
+  width: 100px;
+  height: 200px;
+  background: url(../public/assets/Claw_Base.png);
+  background-position: bottom;
+  background-size: cover;
+  transform: translateX(35px);
+}
+
+.claw-arms {
+  display: flex;
+  position: relative;
+  z-index: 10;
+  transform: translate(-5px, -25px);
+}
+
+.clawsMove {
+  animation: clawsMove 2s linear infinite;
+}
+
+.claw-left {
+  background-image: url(../public/assets/Claw_Arm_Left.png);
+}
+.claw-right {
+  background-image: url(../public/assets/Claw_Arm_Right.png);
+  transform: translateX(-20px);
+}
+
+.claw-left,
+.claw-right {
+  width: 100px;
+  height: 100px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.single-pizza {
+  width: 100px;
+  height: 260px;
+  background: url(../public/assets/SingleBox.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transform: rotate(270deg) translate(183px, -5px) scale(0.7);
+  z-index: -1;
+  margin-left: 45px;
+}
+
+.hidden {
+  display: none;
+}
+
+.pizza-pile {
+  display: block;
+  background: url(../public/assets/PizzaPile.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: repeat-x;
+  height: 800px;
+  width: 100%;
+  position: absolute;
+  bottom: 50px;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.table-top {
+  display: block;
+  background: url(../public/assets/Table_Top.png);
+  background-position: 50% 100%;
+  height: 300px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.down {
+  animation: down 2s linear;
+}
+.up {
+  animation: up 2s linear;
+}
+
+.movement {
+  animation: desktopAnimation 3s linear infinite;
+}
+
+@keyframes clawsMove {
+  0% {
+    transform: translate(-5px, -25px) rotate(0deg);
+  }
+  30% {
+    transform: translate(-5px, 0px) rotate(5deg);
+  }
+  70% {
+    transform: translate(-5px, -50px) rotate(-5deg)
+  }
+  100% {
+    transform: translate(-5px, -25px) rotate(0deg);
+  }
+}
+
+@keyframes down {
+  0% {
+      height: 200px;
+  }
+  100% {
+      height: 700px;
+  }
+}
+
+@keyframes up {
+  0% {
+      height: 700px;
+  }
+  100% {
+      height: 200px;
+  }
+}
+
+/* Desktop */
+@keyframes desktopAnimation {
+  0% {
+    transform: translateX(0%);
+  }
+  50% {
+    transform: translateX(75%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .scene {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .claws {
+    transform: scale(0.5);
+  }
+
+  .movement {
+    animation: mobileAnimation 2s linear infinite;
+  }
+
+  .clawsMove {
+    animation: mobileClawsMove 2s linear infinite;
+  }
+
+  @keyframes mobileAnimation {
+    0% {
+      transform: translateX(0%);
+    }
+    50% {
+      transform: translateX(55%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+  @keyframes mobileClawsMove {
+    0% {
+      transform: translate(-5px, -25px) rotate(0deg);
+    }
+    30% {
+      transform: translate(-5px, -17px) rotate(5deg);
+    }
+    70% {
+      transform: translate(-5px, -35px) rotate(-5deg);
+    }
+    100% {
+      transform: translate(-5px, -25px) rotate(0deg);
+    }
+  }
 }
